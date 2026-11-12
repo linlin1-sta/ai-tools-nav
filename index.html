@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="AI工具导航：精选 35 个真正好用的 AI 工具——AI 对话助手、AI 绘画、AI 视频生成、AI 搜索、AI 编程、AI 配音与音乐、AI 办公，外加热门 AI Agent 工具与 Claude Skills 技能生态，全部直达官网，标注免费与付费；另附 GitHub AI 热门项目排行榜（每周更新，按本周新增 Star 排序）。链接于 2026 年 11 月核实。" />
+    <meta name="keywords" content="AI工具导航,AI工具大全,免费AI工具,AI绘画,AI视频生成,AI写作,AI编程,AI搜索,AI配音,AI Agent,Agent工具,Claude Skills,AI技能,MCP" />
+    <link rel="icon" href="data:," />
+    <title>AI工具导航</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "AI工具导航",
+      "description": "精选 AI 对话、绘画、视频、搜索、编程、音频、办公、Agent 工具与 Skills 技能，全部直达官网。",
+      "numberOfItems": 35
+    }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #faf7f1;
+        --surface: #ffffff;
+        --surface-2: #f3eee3;
+        --ink: #1d1a15;
+        --ink-2: #57503f;
+        --muted: #8a8172;
+        --line: #e5ddcb;
+        --accent: #c2431d;
+        --accent-ink: #a83715;
+        --accent-soft: #fbe9e0;
+        --chip-bg: #ffffff;
+        --shadow: 0 1px 2px rgba(60, 45, 20, .05), 0 8px 24px -18px rgba(60, 45, 20, .35);
+        --serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+        --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --bg: #171410;
+          --surface: #211d17;
+          --surface-2: #2a251d;
+          --ink: #f0eadd;
+          --ink-2: #c9c0ab;
+          --muted: #9a917d;
+          --line: #3a342a;
+          --accent: #ff7a4d;
+          --accent-ink: #ffa07e;
+          --accent-soft: #3d2417;
+          --chip-bg: #211d17;
+          --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 26px -18px rgba(0,0,0,.8);
+        }
+      }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- Hero ---------- */
+      .hero { padding: 52px 0 8px; }
+      .hero h1 {
+        font-family: var(--serif);
+        font-weight: 900;
+        font-size: clamp(34px, 6vw, 52px);
+        line-height: 1.15;
+        margin: 0 0 14px;
+        letter-spacing: .01em;
+      }
+      .hero h1 .dot { color: var(--accent); }
+      .hero p.lede {
+        margin: 0;
+        max-width: 640px;
+        font-size: 17px;
+        color: var(--ink-2);
+      }
+      .hero p.lede strong { color: var(--ink); font-weight: 700; }
+      .stats {
+        display: flex; flex-wrap: wrap; gap: 8px 22px;
+        margin-top: 20px;
+        font-size: 13.5px; color: var(--muted);
+      }
+      .stats b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+      .searchbox { margin-top: 26px; position: relative; max-width: 640px; }
+      .searchbox svg {
+        position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+        width: 20px; height: 20px; color: var(--muted); pointer-events: none;
+      }
+      .searchbox input {
+        width: 100%; box-sizing: border-box;
+        min-height: 52px;
+        padding: 12px 16px 12px 46px;
+        font: inherit; font-size: 16px;
+        color: var(--ink);
+        background: var(--surface);
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        outline: none;
+      }
+      .searchbox input:focus { border-color: var(--accent); }
+      .searchbox input::placeholder { color: var(--muted); }
+
+      /* ---------- Filter bar ---------- */
+      .filterbar {
+        position: sticky; top: 0; z-index: 20;
+        background: color-mix(in srgb, var(--bg) 92%, transparent);
+        backdrop-filter: blur(8px);
+        margin-top: 30px;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .filterbar .row {
+        display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      }
+      .chip {
+        appearance: none;
+        min-height: 38px;
+        padding: 7px 15px;
+        font: inherit; font-size: 14px; font-weight: 500;
+        color: var(--ink-2);
+        background: var(--chip-bg);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .chip:hover { border-color: var(--accent); color: var(--accent-ink); }
+      .chip[aria-pressed="true"] {
+        background: var(--ink); border-color: var(--ink); color: var(--bg);
+      }
+      .chip.free[aria-pressed="true"] {
+        background: var(--accent); border-color: var(--accent); color: #fff;
+      }
+      .count {
+        margin-left: auto;
+        font-size: 13.5px; color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .count.filtered { color: var(--accent-ink); font-weight: 700; }
+      #results, #grid { scroll-margin-top: 76px; }
+
+      /* ---------- Scenario guide ---------- */
+      .scenes { padding: 34px 0 4px; }
+      .scenes h2, .faq h2 {
+        font-family: var(--serif);
+        font-size: 24px; font-weight: 700;
+        margin: 0 0 6px;
+      }
+      .scenes .sub { margin: 0 0 18px; color: var(--muted); font-size: 14.5px; }
+      .scene-grid {
+        display: grid; gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      }
+      .scene {
+        text-align: left;
+        font: inherit;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px 18px;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        min-height: 44px;
+      }
+      .scene:hover { border-color: var(--accent); }
+      .scene .s-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+      .scene .s-tools { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+      .scene .s-go { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--accent-ink); font-weight: 500; }
+
+      /* ---------- Tool grid ---------- */
+      .grid {
+        display: grid; gap: 14px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        padding: 26px 0 10px;
+      }
+      .card {
+        position: relative;
+        display: flex; flex-direction: column;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+      .card-top { display: flex; align-items: flex-start; gap: 13px; }
+      .tile {
+        flex: 0 0 auto;
+        width: 46px; height: 46px;
+        border-radius: 11px;
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--serif); font-weight: 900; font-size: 21px;
+        background: var(--tile-bg, var(--surface-2));
+        color: var(--tile-ink, var(--ink));
+      }
+      .card h3 { margin: 0; font-size: 17.5px; font-weight: 700; line-height: 1.3; }
+      .card h3 a { text-decoration: none; }
+      .card h3 a::after {
+        content: ""; position: absolute; inset: 0; border-radius: 14px;
+      }
+      .card h3 a:hover { color: var(--accent-ink); }
+      .card h3 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+      .vendor { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+      .pick {
+        margin-left: auto; flex: 0 0 auto;
+        font-size: 11.5px; font-weight: 700;
+        color: var(--accent-ink);
+        background: var(--accent-soft);
+        padding: 3px 8px; border-radius: 6px;
+        letter-spacing: .04em;
+      }
+      .desc { margin: 12px 0 0; font-size: 14.5px; color: var(--ink-2); flex: 1; }
+      .card-foot {
+        display: flex; align-items: center; gap: 10px;
+        margin-top: 16px; padding-top: 13px;
+        border-top: 1px dashed var(--line);
+        position: relative; z-index: 1;
+      }
+      .price {
+        font-size: 12px; font-weight: 700;
+        padding: 3px 9px; border-radius: 999px;
+        background: var(--surface-2); color: var(--ink-2);
+        white-space: nowrap;
+      }
+      .price.free { background: #e3f0e6; color: #22663a; }
+      @media (prefers-color-scheme: dark) {
+        .price.free { background: #1e3325; color: #8fd0a2; }
+      }
+      .cat { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+      .visit {
+        margin-left: auto;
+        font-size: 13.5px; font-weight: 700;
+        color: var(--accent-ink);
+        text-decoration: none;
+        display: inline-flex; align-items: center; gap: 3px;
+        min-height: 36px; padding: 4px 2px;
+        white-space: nowrap;
+      }
+      .visit:hover { text-decoration: underline; }
+      .domain { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+
+      .empty {
+        display: none;
+        text-align: center;
+        padding: 56px 20px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      .empty.show { display: block; }
+      .empty button {
+        margin-top: 12px;
+        min-height: 40px; padding: 8px 18px;
+        font: inherit; font-size: 14px; font-weight: 500;
+        background: var(--surface); color: var(--ink);
+        border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+      }
+
+      /* ---------- GitHub weekly rank ---------- */
+      .rank { padding: 38px 0 4px; }
+      .rank h2 {
+        font-family: var(--serif);
+        font-size: 24px; font-weight: 700;
+        margin: 0;
+      }
+      .rank-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .rank-badge {
+        font-size: 12px; font-weight: 700;
+        color: var(--accent-ink); background: var(--accent-soft);
+        padding: 3px 9px; border-radius: 6px; white-space: nowrap;
+      }
+      .rank .sub { margin: 8px 0 0; color: var(--muted); font-size: 14px; max-width: 860px; }
+      .rank .sub a { color: var(--accent-ink); text-decoration: none; }
+      .rank .sub a:hover { text-decoration: underline; }
+      .rank-insight {
+        margin: 16px 0 0;
+        padding: 13px 16px;
+        background: var(--surface-2);
+        border-radius: 10px;
+        font-size: 14.5px; color: var(--ink-2);
+      }
+      .rank-insight strong { color: var(--ink); }
+      .rank-list {
+        list-style: none; margin: 18px 0 0; padding: 0;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .rank-item {
+        display: flex; gap: 16px; align-items: flex-start;
+        padding: 16px 18px;
+      }
+      .rank-item + .rank-item { border-top: 1px solid var(--line); }
+      .rank-no {
+        flex: 0 0 auto;
+        width: 40px; text-align: center;
+        font-family: var(--serif); font-weight: 900; font-size: 26px; line-height: 1.2;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+      .rank-item.top .rank-no { color: var(--accent); font-size: 30px; }
+      .rank-main { flex: 1; min-width: 0; }
+      .rank-main h3 { margin: 0; font-size: 16.5px; font-weight: 700; line-height: 1.35; word-break: break-all; }
+      .rank-main h3 a { text-decoration: none; font-family: var(--mono); font-size: 15.5px; }
+      .rank-main h3 a:hover { color: var(--accent-ink); text-decoration: underline; }
+      .rank-tag {
+        display: inline-block; vertical-align: 2px;
+        margin-left: 8px;
+        font-size: 11.5px; font-weight: 700;
+        color: var(--accent-ink); background: var(--accent-soft);
+        padding: 2px 8px; border-radius: 6px; white-space: nowrap;
+      }
+      .rank-main p { margin: 5px 0 0; font-size: 14px; color: var(--ink-2); }
+      .rank-meta {
+        margin-top: 7px;
+        display: flex; flex-wrap: wrap; gap: 4px 16px;
+        font-size: 12.5px; color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+      .rank-gain { flex: 0 0 auto; text-align: right; padding-top: 2px; }
+      .rank-gain b {
+        display: block;
+        font-size: 19px; font-weight: 700; color: var(--accent-ink);
+        font-variant-numeric: tabular-nums; line-height: 1.25;
+      }
+      .rank-gain span { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+      .rank-foot { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
+      .rank-foot a { color: var(--accent-ink); text-decoration: none; }
+      .rank-foot a:hover { text-decoration: underline; }
+      @media (max-width: 560px) {
+        .rank-item { flex-wrap: wrap; gap: 6px 12px; padding: 14px 16px; }
+        .rank-no { width: 30px; text-align: left; font-size: 22px; }
+        .rank-item.top .rank-no { font-size: 24px; }
+        .rank-main { flex: 1 1 calc(100% - 46px); }
+        .rank-gain { margin-left: 42px; text-align: left; display: flex; align-items: baseline; gap: 8px; }
+        .rank-gain b { font-size: 17px; }
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq { padding: 40px 0 8px; }
+      .faq details {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow);
+      }
+      .faq summary {
+        cursor: pointer;
+        padding: 15px 18px;
+        min-height: 36px;
+        font-weight: 700; font-size: 15.5px;
+        list-style: none;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary .chev { color: var(--muted); transition: transform .18s ease; flex: 0 0 auto; }
+      .faq details[open ] summary .chev { transform: rotate(180deg); }
+      .faq .a { padding: 0 18px 16px; color: var(--ink-2); font-size: 14.5px; }
+      .faq .a p { margin: 0; }
+
+      /* ---------- Footer ---------- */
+      footer {
+        margin-top: 44px;
+        border-top: 1px solid var(--line);
+        padding: 28px 0 44px;
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      footer .cols { display: flex; flex-wrap: wrap; gap: 26px 56px; }
+      footer h4 {
+        margin: 0 0 8px; font-size: 13px; color: var(--ink);
+        letter-spacing: .06em;
+      }
+      footer p { margin: 0; max-width: 420px; }
+      footer a { color: var(--accent-ink); text-decoration: none; display: inline-block; min-height: 32px; line-height: 32px; }
+      footer a:hover { text-decoration: underline; }
+      .foot-note { margin-top: 22px; font-size: 12.5px; }
+
+      @media (max-width: 560px) {
+        .hero { padding-top: 36px; }
+        .grid { grid-template-columns: 1fr; }
+        .count { margin-left: 0; width: 100%; }
+        .filterbar .row { gap: 7px; }
+        .chip { padding: 7px 12px; font-size: 13.5px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .faq summary .chev { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <h1>AI 工具导航<span class="dot">。</span></h1>
+        <p class="lede">不堆数量，只收<strong>真正好用、还在认真维护</strong>的工具。每个条目一句话说清它干什么、谁做的、免费还是付费，点名字或「访问官网」直达，不绕中间页。这次新增两类：<strong>Agent 工具</strong>——给个目标自己动手干活的；<strong>Skills 技能</strong>——给 Agent 和 Claude 加本事的技能包与市场。页面下方还有一份 <strong>GitHub AI 热门项目周榜</strong>，看开源圈这周在追什么。</p>
+        <div class="stats">
+          <span>已收录 <b id="stat-total">35</b> 个工具</span>
+          <span><b>9</b> 个分类</span>
+          <span>官网链接核实于 <b>2026 年 11 月 12 日</b></span>
+          <span>GitHub 周榜抓取于 <b>2026 年 11 月 12 日</b></span>
+        </div>
+        <div class="searchbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+          <input id="q" type="search" placeholder="搜工具：试试「agent」「技能」「视频」「配音」「代码」…" aria-label="搜索工具" autocomplete="off" />
+        </div>
+      </header>
+
+      <div class="filterbar" role="group" aria-label="按分类筛选">
+        <div class="row" id="chips">
+          <button class="chip" data-cat="all" aria-pressed="true">全部</button>
+          <button class="chip" data-cat="chat" aria-pressed="false">对话助手</button>
+          <button class="chip" data-cat="image" aria-pressed="false">图像生成</button>
+          <button class="chip" data-cat="video" aria-pressed="false">视频生成</button>
+          <button class="chip" data-cat="search" aria-pressed="false">搜索研究</button>
+          <button class="chip" data-cat="code" aria-pressed="false">编程开发</button>
+          <button class="chip" data-cat="audio" aria-pressed="false">音频音乐</button>
+          <button class="chip" data-cat="office" aria-pressed="false">办公效率</button>
+          <button class="chip" data-cat="agent" aria-pressed="false">Agent 工具</button>
+          <button class="chip" data-cat="skills" aria-pressed="false">Skills 技能</button>
+          <button class="chip free" id="free-toggle" aria-pressed="false">只看有免费版</button>
+          <span class="count" id="count" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <section aria-label="工具列表" id="results">
+        <div class="grid" id="grid"></div>
+        <div class="empty" id="empty">
+          没有找到对口的工具，换个词试试，或者清掉筛选看全部。
+          <br />
+          <button id="reset">查看全部工具</button>
+        </div>
+      </section>
+
+      <section class="rank" id="github-rank" aria-labelledby="rank-h">
+        <div class="rank-head">
+          <h2 id="rank-h">GitHub AI 热门项目 · 本周榜</h2>
+          <span class="rank-badge">近 7 天 · 截至 2026 年 11 月 12 日</span>
+        </div>
+        <p class="sub">数据源：<a href="https://github.com/trending?since=weekly" target="_blank" rel="noopener">GitHub Trending 周榜</a>，总 Star 与 Fork 经 GitHub API 逐个核对，2026 年 11 月 12 日抓取。按<strong>本周新增 Star</strong> 从高到低排，只保留 AI 本体项目（大模型、Agent、Skills、AI 机器人）；同期上榜的通用编辑器、通用爬虫框架、物理仿真库等非 AI 项目已剔除。本页是静态榜单，每周换一期，数字以抓取时刻为准。</p>
+        <p class="rank-insight"><strong>本周看点：</strong>前十里有四个是 Skills 技能仓库（第 1、2、6、10 名）——给 Agent 装技能的热度，已经盖过了拼模型本身；剩下六席全是让 Agent 动手干活的工具：操作电脑、操作浏览器、安全审计、做游戏、跑机器人。</p>
+        <ol class="rank-list">
+          <li class="rank-item top">
+            <div class="rank-no" aria-label="第 1 名">1</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">cloudflare/security-audit-skill</a><span class="rank-tag">安全审计技能</span></h3>
+              <p>Cloudflare 给编程 Agent 做的多阶段安全审计技能：分阶段排查、独立复核，最后产出机器可读的安全问题清单。</p>
+              <div class="rank-meta"><span>JavaScript</span><span>总 Star 70,420</span><span>Fork 4,668</span><span>MIT</span></div>
+            </div>
+            <div class="rank-gain"><b>+11,507</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item top">
+            <div class="rank-no" aria-label="第 2 名">2</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">mattpocock/skills</a><span class="rank-tag">工程 Skills</span></h3>
+              <p>面向真工程师的 Agent Skills 合集，直接出自作者自己在用的 .agents 目录，本周全站涨星最猛的技能仓库之一，总 Star 已破 32 万。</p>
+              <div class="rank-meta"><span>Shell</span><span>总 Star 322,093</span><span>Fork 27,009</span><span>MIT</span></div>
+            </div>
+            <div class="rank-gain"><b>+9,575</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item top">
+            <div class="rank-no" aria-label="第 3 名">3</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/milind-soni/OpenMausBot" target="_blank" rel="noopener">milind-soni/OpenMausBot</a><span class="rank-tag">AI 机器人</span></h3>
+              <p>开源版 Grok Bot 替代品：自带一台虚拟机给机器人用，不只是聊天，还能真的在机器里动手执行任务。</p>
+              <div class="rank-meta"><span>TypeScript</span><span>总 Star 21,272</span><span>Fork 2,968</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+9,257</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 4 名">4</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/NVIDIA/auto-ontology" target="_blank" rel="noopener">NVIDIA/auto-ontology</a><span class="rank-tag">LLM 上下文</span></h3>
+              <p>英伟达的本体构建框架：在数据之上搭一层语义图谱推理，让大模型和 Agent 检索上下文更准、回答更可解释。</p>
+              <div class="rank-meta"><span>Python</span><span>总 Star 11,878</span><span>Fork 973</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+7,947</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 5 名">5</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener">vercel-labs/agent-desktop</a><span class="rank-tag">电脑操作 Agent</span></h3>
+              <p>Vercel 实验室的电脑操作命令行工具：让 AI Agent 能像人一样使用桌面——看屏幕、点按钮、开应用。</p>
+              <div class="rank-meta"><span>Rust</span><span>总 Star 22,146</span><span>Fork 1,650</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+7,772</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 6 名">6</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills</a><span class="rank-tag">官方 Skills</span></h3>
+              <p>Anthropic 官方 Agent Skills 公开仓库，文档处理等官方技能的源头——本站「Skills 技能」分类里也收了它。</p>
+              <div class="rank-meta"><span>Python</span><span>总 Star 193,190</span><span>Fork 22,734</span></div>
+            </div>
+            <div class="rank-gain"><b>+5,738</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 7 名">7</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noopener">vercel-labs/agent-browser</a><span class="rank-tag">浏览器 Agent</span></h3>
+              <p>给 AI Agent 用的浏览器自动化命令行：让 Agent 自己开网页、点按钮、填表单、抓内容，是很多 Agent 工具的底层件。</p>
+              <div class="rank-meta"><span>Rust</span><span>总 Star 49,918</span><span>Fork 3,491</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+4,183</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 8 名">8</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/Donchitos/Claude-Code-Game-Studios" target="_blank" rel="noopener">Donchitos/Claude-Code-Game-Studios</a><span class="rank-tag">多 Agent 协作</span></h3>
+              <p>把 Claude Code 变成一间游戏工作室：49 个 AI Agent 加 72 个工作流技能，按真实工作室的层级分工协作做游戏。</p>
+              <div class="rank-meta"><span>Shell</span><span>总 Star 38,498</span><span>Fork 5,008</span><span>MIT</span></div>
+            </div>
+            <div class="rank-gain"><b>+3,150</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 9 名">9</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/herdrdev/herdr" target="_blank" rel="noopener">herdrdev/herdr</a><span class="rank-tag">Agent 运行时</span></h3>
+              <p>编程 Agent 的运行时环境：让多个编码 Agent 有地方常驻、排队和被统一管理，是 Agent 从玩具走向流水线的基础设施。</p>
+              <div class="rank-meta"><span>Rust</span><span>总 Star 50,357</span><span>Fork 4,065</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+2,213</b><span>本周新增 Star</span></div>
+          </li>
+          <li class="rank-item">
+            <div class="rank-no" aria-label="第 10 名">10</div>
+            <div class="rank-main">
+              <h3><a href="https://github.com/google/skills" target="_blank" rel="noopener">google/skills</a><span class="rank-tag">官方 Skills</span></h3>
+              <p>Google 官方的 Agent Skills 合集：面向 Google 产品与技术的技能包，让 Agent 用对姿势调用谷歌家的工具和服务。</p>
+              <div class="rank-meta"><span>Python</span><span>总 Star 23,950</span><span>Fork 1,998</span><span>Apache-2.0</span></div>
+            </div>
+            <div class="rank-gain"><b>+2,013</b><span>本周新增 Star</span></div>
+          </li>
+        </ol>
+        <p class="rank-foot">完整周榜见 <a href="https://github.com/trending?since=weekly" target="_blank" rel="noopener">GitHub Trending · 本周</a>；点项目名直达仓库，安装与用法以各仓库 README 为准。</p>
+      </section>
+
+      <section class="scenes" aria-labelledby="scenes-h">
+        <h2 id="scenes-h">按场景选工具</h2>
+        <p class="sub">不知道从哪下手？点一个场景，直接筛出对口的工具。</p>
+        <div class="scene-grid">
+          <button class="scene" data-scene="秘塔AI搜索|Perplexity|Kimi">
+            <div class="s-title">写论文、查资料</div>
+            <div class="s-tools">秘塔AI搜索 · Perplexity · Kimi</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+          <button class="scene" data-scene="可灵AI|即梦AI|Runway|ElevenLabs">
+            <div class="s-title">做短视频、漫剧</div>
+            <div class="s-tools">可灵AI · 即梦AI · Runway · ElevenLabs 配音</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+          <button class="scene" data-scene="Cursor|GitHub Copilot|DeepSeek">
+            <div class="s-title">写代码、做产品</div>
+            <div class="s-tools">Cursor · GitHub Copilot · DeepSeek</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+          <button class="scene" data-scene="Gamma|通义千问|智谱清言">
+            <div class="s-title">做汇报、写文档</div>
+            <div class="s-tools">Gamma · 通义千问 · 智谱清言</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+          <button class="scene" data-scene="Manus|Genspark|扣子 Coze|Dify">
+            <div class="s-title">让 AI 自己干活</div>
+            <div class="s-tools">Manus · Genspark · 扣子 Coze · Dify</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+          <button class="scene" data-scene="Claude Skills|Anthropic Skills 仓库|SKILLS.pub|Smithery">
+            <div class="s-title">给 Agent 装技能</div>
+            <div class="s-tools">Claude Skills · Anthropic 技能仓库 · SKILLS.pub · Smithery</div>
+            <span class="s-go">看这组工具 →</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-h">
+        <h2 id="faq-h">常见问题</h2>
+        <div style="height:14px"></div>
+        <details>
+          <summary>这些工具都免费吗？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>卡片上都标了：标「免费」的可以一直免费用；标「免费 + 付费」的有免费版或免费额度，进阶功能收费；标「付费」的需要订阅。价格和额度各家调整频繁，以官网为准。</p></div>
+        </details>
+        <details>
+          <summary>哪些在国内能直接打开？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>国产工具——DeepSeek、Kimi、豆包、通义千问、智谱清言、讯飞星火、即梦AI、可灵AI、秘塔AI搜索——国内直连就能用。ChatGPT、Claude、Gemini、Midjourney、Runway、Perplexity、Suno、ElevenLabs、Cursor、Gamma、DeepL 等海外工具有地区限制，具体以各官网公布的支持地区为准。</p></div>
+        </details>
+        <details>
+          <summary>对话助手这么多，先用哪个？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>只想免费、打开就用：DeepSeek 或豆包。经常读长文档：Kimi。写代码和啃英文资料：Claude 或 ChatGPT。没有哪个全能，按你手头最常干的那件事选一个先用起来。</p></div>
+        </details>
+        <details>
+          <summary>这个导航怎么选工具？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>只收三类：官方产品（链接一律指向官网）、有真实用户量、还在持续更新。同类只留头部几个，不收套壳站和镜像站。全部链接定期复查，失效的及时下架。</p></div>
+        </details>
+        <details>
+          <summary>Agent 工具和普通聊天 AI 有什么不一样？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>聊天 AI 是你问一句它答一句；Agent 是你给一个目标，它自己拆步骤、调用浏览器和工具、跑完再交成品。想「一句话拿结果」用 Manus、Genspark；想自己搭一个专属助手用扣子 Coze 或 Dify；想把 AI 塞进现有业务流程用 n8n；派它写代码用 Devin、Lovable。</p></div>
+        </details>
+        <details>
+          <summary>GitHub 排行榜多久更新一次？数据准吗？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>每周一期。每一期的数据都来自 GitHub 官方 Trending 周榜，本周新增 Star 按该页显示值排序，总 Star 和 Fork 再用 GitHub API 逐个核对，抓取日期标在榜单标题旁。本页是静态页面，不会自动刷新，看到的永远是标注日期那一期的快照；想看实时榜单，点榜单下方的 GitHub Trending 链接。</p></div>
+        </details>
+        <details>
+          <summary>Skills 是什么？怎么给 Claude 装技能？<span class="chev" aria-hidden="true">▾</span></summary>
+          <div class="a"><p>Skill 就是一个装着说明书、脚本和模板的文件夹（核心是一个 SKILL.md），装上后 Claude 遇到对口任务会自动按里面的规矩干活，比如按你公司的格式出 Word、做数据分析。入门先看 Claude Skills 官方页和 Anthropic 的 GitHub 技能仓库；想淘更多，去 SKILLS.pub、Claude Skills Hub 这类市场按分类搜，照各仓库说明安装即可。</p></div>
+        </details>
+      </section>
+
+      <footer>
+        <div class="cols">
+          <div>
+            <h4>关于本站</h4>
+            <p>AI工具导航是一个人维护的精选目录，帮你在几百个 AI 产品里快速找到对口的那一个。所有链接直达官网，本站不做中转、不收录费。</p>
+          </div>
+          <div>
+            <h4>收录与纠错</h4>
+            <p>全部链接定期复查：工具停运、改名或官网变更地址，都会及时下架或更新，不留死链。</p>
+          </div>
+          <div>
+            <h4>热门分类</h4>
+            <p>
+              <a href="#" data-jump="image">AI 绘画工具</a> ·
+              <a href="#" data-jump="video">AI 视频生成</a> ·
+              <a href="#" data-jump="code">AI 编程工具</a> ·
+              <a href="#" data-jump="audio">AI 配音与音乐</a> ·
+              <a href="#" data-jump="agent">AI Agent 工具</a> ·
+              <a href="#" data-jump="skills">Skills 技能</a> ·
+              <a href="#github-rank">GitHub AI 热门项目周榜</a>
+            </p>
+          </div>
+        </div>
+        <p class="foot-note">工具的功能、价格与可用地区以各官网最新信息为准。本页收录信息核实于 2026 年 11 月 12 日。</p>
+        <p class="foot-note">Featured on <a href="https://submitaitools.org" target="_blank" rel="noopener">SubmitAITools</a></p>
+      </footer>
+    </main>
+
+    <script>
+      var CATS = {
+        chat:   { label: "对话助手", bg: "#fbe9e0", ink: "#a83715" },
+        image:  { label: "图像生成", bg: "#f6ecd4", ink: "#7d5a14" },
+        video:  { label: "视频生成", bg: "#dde9f2", ink: "#2c5878" },
+        search: { label: "搜索研究", bg: "#e0efe4", ink: "#22663a" },
+        code:   { label: "编程开发", bg: "#e6e4f2", ink: "#46406e" },
+        audio:  { label: "音频音乐", bg: "#f9e3ec", ink: "#8c2f55" },
+        office: { label: "办公效率", bg: "#e8e2d2", ink: "#5f5326" },
+        agent:  { label: "Agent 工具", bg: "#d9ecec", ink: "#175e5e" },
+        skills: { label: "Skills 技能", bg: "#e6e8e6", ink: "#3c4440" }
+      };
+
+      var TOOLS = [
+        { name: "ChatGPT", vendor: "OpenAI", cat: "chat", price: "免费 + 付费", free: true, pick: true,
+          url: "https://chatgpt.com/zh-Hans-CN/overview/", domain: "chatgpt.com",
+          desc: "对话、写作、编程、识图样样都行，综合能力最稳的通用 AI 助手。", tags: "对话 写作 编程 多模态 问答" },
+        { name: "Claude", vendor: "Anthropic", cat: "chat", price: "免费 + 付费", free: true, pick: true,
+          url: "https://claude.com/", domain: "claude.com",
+          desc: "长文阅读和写代码见长，回答细致，适合啃长文档和做深度分析。", tags: "对话 写作 编程 长文 分析" },
+        { name: "Gemini", vendor: "Google", cat: "chat", price: "免费 + 付费", free: true, pick: false,
+          url: "https://gemini.google.com", domain: "gemini.google.com",
+          desc: "谷歌的 AI 助手，与搜索、Gmail、文档打通，多模态能力强。", tags: "对话 多模态 搜索 办公" },
+        { name: "DeepSeek", vendor: "深度求索", cat: "chat", price: "免费 + 付费", free: true, pick: true,
+          url: "https://www.deepseek.com/", domain: "deepseek.com",
+          desc: "国产开源大模型，深度思考模式强，网页版和 App 免费，API 按量付费、价格低。", tags: "对话 推理 编程 开源 国产 深度思考" },
+        { name: "Kimi", vendor: "月之暗面", cat: "chat", price: "免费 + 付费", free: true, pick: true,
+          url: "https://www.kimi.com/", domain: "kimi.com",
+          desc: "以超长文本见长，几百页 PDF 丢进去直接问，还能联网搜索、做 PPT。", tags: "对话 长文 论文 文档 搜索 国产" },
+        { name: "豆包", vendor: "字节跳动", cat: "chat", price: "免费", free: true, pick: false,
+          url: "https://www.doubao.com/", domain: "doubao.com",
+          desc: "国内用户量最大的 AI 助手之一，对话、写作、绘图、语音都免费。", tags: "对话 写作 绘图 语音 国产" },
+        { name: "通义千问", vendor: "阿里巴巴", cat: "chat", price: "免费 + 付费", free: true, pick: false,
+          url: "https://tongyi.aliyun.com/", domain: "tongyi.aliyun.com",
+          desc: "阿里的全能助手，问答、写作、PPT、文档速读，生态和 API 都齐全。", tags: "对话 写作 PPT 文档 国产 办公" },
+        { name: "智谱清言", vendor: "智谱 AI", cat: "chat", price: "免费 + 付费", free: true, pick: false,
+          url: "https://chatglm.cn/", domain: "chatglm.cn",
+          desc: "清华系 GLM 模型驱动，能写报告、出 PPT、做数据分析的任务型助手。", tags: "对话 报告 PPT 数据分析 国产 办公" },
+        { name: "讯飞星火", vendor: "科大讯飞", cat: "chat", price: "免费 + 付费", free: true, pick: false,
+          url: "https://xinghuo.xfyun.cn/", domain: "xinghuo.xfyun.cn",
+          desc: "语音和中文理解是老本行，学习、办公、翻译场景用着顺手。", tags: "对话 语音 学习 翻译 国产" },
+        { name: "Midjourney", vendor: "Midjourney, Inc.", cat: "image", price: "付费", free: false, pick: true,
+          url: "https://www.midjourney.com/home", domain: "midjourney.com",
+          desc: "文生图质量标杆，出图审美在线，设计师和插画师的主力 AI 绘画工具。", tags: "绘画 文生图 设计 插画 图片" },
+        { name: "即梦AI", vendor: "字节跳动 · 剪映", cat: "image", price: "免费 + 付费", free: true, pick: true,
+          url: "https://jimeng.jianying.com/", domain: "jimeng.jianying.com",
+          desc: "中文提示词友好，文生图、图生视频、智能画布一站搞定。", tags: "绘画 文生图 视频 画布 国产 短剧 漫剧" },
+        { name: "可灵AI", vendor: "快手", cat: "video", price: "免费 + 付费", free: true, pick: true,
+          url: "https://klingai.com/app", domain: "klingai.com",
+          desc: "国产视频生成头部玩家，图生视频和运镜控制强，短剧、广告都在用。", tags: "视频 文生视频 图生视频 运镜 国产 短剧 漫剧" },
+        { name: "Runway", vendor: "Runway", cat: "video", price: "免费 + 付费", free: true, pick: false,
+          url: "https://runwayml.com/", domain: "runwayml.com",
+          desc: "海外影视圈常用的 AI 视频平台，生成加剪辑一整套工具链。", tags: "视频 剪辑 文生视频 影视" },
+        { name: "Perplexity", vendor: "Perplexity AI", cat: "search", price: "免费 + 付费", free: true, pick: false,
+          url: "https://www.perplexity.ai/", domain: "perplexity.ai",
+          desc: "AI 搜索引擎，答案带引用来源，查资料、核事实比翻链接快得多。", tags: "搜索 研究 查资料 论文 引用" },
+        { name: "秘塔AI搜索", vendor: "秘塔科技", cat: "search", price: "免费", free: true, pick: true,
+          url: "https://metaso.cn/", domain: "metaso.cn",
+          desc: "无广告的中文 AI 搜索，直达结果，还能自动整理成思维导图。", tags: "搜索 研究 查资料 论文 国产 无广告" },
+        { name: "Cursor", vendor: "Anysphere", cat: "code", price: "免费 + 付费", free: true, pick: true,
+          url: "https://cursor.com/", domain: "cursor.com",
+          desc: "AI 原生代码编辑器，理解整个代码库，能自己动手改多文件、跑任务。", tags: "编程 代码 编辑器 开发 agent" },
+        { name: "GitHub Copilot", vendor: "GitHub", cat: "code", price: "免费 + 付费", free: true, pick: false,
+          url: "https://github.com/features/copilot", domain: "github.com",
+          desc: "装进 VS Code 等主流编辑器的编程助手，补全、问答、改代码都行。", tags: "编程 代码 补全 开发" },
+        { name: "Suno", vendor: "Suno, Inc.", cat: "audio", price: "免费 + 付费", free: true, pick: false,
+          url: "https://suno.com/", domain: "suno.com",
+          desc: "一句话生成带人声的完整歌曲，给个主题或歌词就能出成品。", tags: "音乐 作曲 歌曲 人声 生成" },
+        { name: "ElevenLabs", vendor: "ElevenLabs", cat: "audio", price: "免费 + 付费", free: true, pick: true,
+          url: "https://elevenlabs.io/", domain: "elevenlabs.io",
+          desc: "AI 配音天花板，文字转语音逼真，还能克隆声音、给视频换语言配音。", tags: "配音 语音合成 克隆声音 有声书 短剧" },
+        { name: "Gamma", vendor: "Gamma Tech", cat: "office", price: "免费 + 付费", free: true, pick: false,
+          url: "https://gamma.app/", domain: "gamma.app",
+          desc: "输入主题自动生成排版好的 PPT、文档和网页，做汇报的救星。", tags: "PPT 演示 文档 办公 汇报" },
+        { name: "DeepL", vendor: "DeepL SE", cat: "office", price: "免费 + 付费", free: true, pick: false,
+          url: "https://www.deepl.com/translator", domain: "deepl.com",
+          desc: "翻译质量公认自然，整篇 Word、PDF 文档翻译不丢格式。", tags: "翻译 文档 外语 办公" },
+        { name: "Manus", vendor: "Manus AI", cat: "agent", price: "免费 + 付费", free: true, pick: true,
+          url: "https://manus.im/", domain: "manus.im",
+          desc: "通用自主 Agent 的代表：给个目标，它自己拆任务、上网查、写代码、做表格和网页，最后交成品，还能设定时任务。", tags: "agent 自主任务 智能体 研究 报告 网页 通用" },
+        { name: "Genspark", vendor: "MainFunc", cat: "agent", price: "免费 + 付费", free: true, pick: false,
+          url: "https://www.genspark.ai/", domain: "genspark.ai",
+          desc: "Super Agent 工作台：多个模型分工协作，一次交付幻灯片、表格、文档、图片和视频，适合高产出的综合任务。", tags: "agent super agent 幻灯片 表格 文档 研究 多模型" },
+        { name: "扣子 Coze", vendor: "字节跳动", cat: "agent", price: "免费 + 付费", free: true, pick: true,
+          url: "https://www.coze.cn/", domain: "coze.cn",
+          desc: "零代码搭 Agent：拖拽工作流、接知识库和插件，做好一键发布到飞书、微信等渠道，国内最好上手的搭建平台。", tags: "agent 智能体 无代码 搭建 工作流 知识库 插件 国产" },
+        { name: "Dify", vendor: "LangGenius", cat: "agent", price: "免费 + 付费", free: true, pick: true,
+          url: "https://dify.ai/", domain: "dify.ai",
+          desc: "开源的 Agent 与大模型应用平台：可视化编排、RAG 知识库、工具调用一站齐全，云版免部署，也能自托管。", tags: "agent 开源 搭建 工作流 RAG 知识库 自托管 平台" },
+        { name: "n8n", vendor: "n8n GmbH", cat: "agent", price: "免费 + 付费", free: true, pick: false,
+          url: "https://n8n.io", domain: "n8n.io",
+          desc: "工作流自动化里加 AI：400+ 应用节点串成流程，中间插 Agent 节点负责判断和调工具，适合把 AI 嵌进真实业务。", tags: "agent 自动化 工作流 节点 集成 自托管 开源" },
+        { name: "Devin", vendor: "Cognition", cat: "agent", price: "付费", free: false, pick: false,
+          url: "https://devin.ai/", domain: "devin.ai",
+          desc: "专职写代码的自主 Agent：在云端沙箱里自己改 bug、做功能、提 PR，适合把明确的工程任务整包派出去。", tags: "agent 编程 软件工程师 代码 自动开发 PR" },
+        { name: "Lovable", vendor: "Lovable", cat: "agent", price: "免费 + 付费", free: true, pick: false,
+          url: "https://lovable.dev/", domain: "lovable.dev",
+          desc: "一句话生成全栈 Web 应用：Agent 模式自己探索代码库、调试并部署，不会写代码也能快速做出产品原型。", tags: "agent 建站 应用生成 全栈 原型 无代码 编程" },
+        { name: "Claude Skills", vendor: "Anthropic", cat: "skills", price: "免费 + 付费", free: true, pick: true,
+          url: "https://claude.com/skills", domain: "claude.com",
+          desc: "官方 Skills 入口：把你的工作流程、规范和模板打包成技能，Claude 遇到对口任务自动调用，输出风格稳定不走样。", tags: "skills 技能 claude 官方 工作流 模板 技能包" },
+        { name: "Anthropic Skills 仓库", vendor: "Anthropic · GitHub", cat: "skills", price: "免费", free: true, pick: true,
+          url: "https://github.com/anthropics/skills", domain: "github.com",
+          desc: "官方开源技能包：docx、pdf、pptx、xlsx 文档四件套，外加 frontend-design、mcp-builder、skill-creator 等示范技能，装技能先看这里。", tags: "skills 技能 开源 文档 docx pdf pptx xlsx github 技能包" },
+        { name: "SKILLS.pub", vendor: "第三方技能市场", cat: "skills", price: "免费", free: true, pick: false,
+          url: "https://skills.pub/zh", domain: "skills.pub",
+          desc: "Claude Skills 在线市场：收录 7600+ 技能，可搜索、可按分类筛选，找到对口的按说明装进 Claude 就能用。", tags: "skills 技能 市场 搜索 下载 claude 技能包" },
+        { name: "Claude Skills Hub", vendor: "社区技能市场", cat: "skills", price: "免费", free: true, pick: false,
+          url: "https://claudeskills.info/zh/", domain: "claudeskills.info",
+          desc: "社区维护的技能集市：按开发、测试、创意设计、安全和生产力分类整理 Claude Code 技能，每条都链回 GitHub 原仓库。", tags: "skills 技能 社区 claude code 开发 设计 技能包" },
+        { name: "Smithery", vendor: "Smithery（现属 Arcade）", cat: "skills", price: "免费", free: true, pick: false,
+          url: "https://www.smithery.ai/", domain: "smithery.ai",
+          desc: "MCP 服务器目录：给 Agent 接搜索、数据库、办公软件等外部工具的注册表，条目页直达各服务官方 MCP 地址。其托管代理已于 2026 年 10 月底停运，现为纯目录。", tags: "skills mcp 工具连接 注册表 agent 扩展 数据源" },
+        { name: "Glama", vendor: "Glama", cat: "skills", price: "免费 + 付费", free: true, pick: false,
+          url: "https://glama.ai", domain: "glama.ai",
+          desc: "最大的 MCP 注册表之一：11 万+ 服务器全部扫描、打质量分，还能在浏览器里先试用再决定装不装。", tags: "skills mcp 注册表 工具连接 评分 agent 扩展" },
+        { name: "MCP Registry", vendor: "MCP 官方项目", cat: "skills", price: "免费", free: true, pick: false,
+          url: "https://registry.modelcontextprotocol.io", domain: "registry.modelcontextprotocol.io",
+          desc: "MCP 官方注册表：服务器元数据的源头，Smithery、Glama 等目录都从这里同步，找工具连接先从官方条目查起。", tags: "skills mcp 官方 注册表 工具连接 agent 扩展" }
+      ];
+
+      var grid = document.getElementById("grid");
+      var emptyEl = document.getElementById("empty");
+      var countEl = document.getElementById("count");
+      var input = document.getElementById("q");
+      var freeToggle = document.getElementById("free-toggle");
+      var state = { cat: "all", q: "", freeOnly: false };
+
+      function esc(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      function cardHTML(t) {
+        var c = CATS[t.cat];
+        var first = esc(t.name.charAt(0));
+        return '' +
+        '<article class="card">' +
+          '<div class="card-top">' +
+            '<div class="tile" style="--tile-bg:' + c.bg + ';--tile-ink:' + c.ink + '" aria-hidden="true">' + first + '</div>' +
+            '<div>' +
+              '<h3><a href="' + esc(t.url) + '" target="_blank" rel="noopener">' + esc(t.name) + '</a></h3>' +
+              '<div class="vendor">' + esc(t.vendor) + '</div>' +
+            '</div>' +
+            (t.pick ? '<span class="pick">编辑精选</span>' : '') +
+          '</div>' +
+          '<p class="desc">' + esc(t.desc) + '</p>' +
+          '<div class="card-foot">' +
+            '<span class="price' + (t.price === "免费" ? ' free' : '') + '">' + esc(t.price) + '</span>' +
+            '<span class="cat">' + c.label + '</span>' +
+            '<a class="visit" href="' + esc(t.url) + '" target="_blank" rel="noopener">访问官网 <span aria-hidden="true">↗</span></a>' +
+          '</div>' +
+          '<div class="domain" style="margin-top:6px">' + esc(t.domain) + '</div>' +
+        '</article>';
+      }
+
+      function matches(t) {
+        if (state.cat !== "all" && t.cat !== state.cat) return false;
+        if (state.freeOnly && !t.free) return false;
+        if (state.q) {
+          var hay = (t.name + " " + t.vendor + " " + t.desc + " " + t.tags + " " + CATS[t.cat].label).toLowerCase();
+          var terms = state.q.toLowerCase().split(/\s+/);
+          for (var i = 0; i < terms.length; i++) {
+            if (terms[i] && hay.indexOf(terms[i]) === -1) return false;
+          }
+        }
+        return true;
+      }
+
+      function render() {
+        var list = TOOLS.filter(matches);
+        grid.innerHTML = list.map(cardHTML).join("");
+        emptyEl.classList.toggle("show", list.length === 0);
+        countEl.textContent = "显示 " + list.length + " / " + TOOLS.length + " 个工具";
+        countEl.classList.toggle("filtered", list.length !== TOOLS.length);
+      }
+
+      function scrollToResults() {
+        document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.getElementById("chips").addEventListener("click", function (e) {
+        var btn = e.target.closest("[data-cat]");
+        if (btn) {
+          state.cat = btn.getAttribute("data-cat");
+          var all = document.querySelectorAll("[data-cat]");
+          for (var i = 0; i < all.length; i++) {
+            all[i].setAttribute("aria-pressed", all[i] === btn ? "true" : "false");
+          }
+          render();
+          scrollToResults();
+        }
+      });
+
+      freeToggle.addEventListener("click", function () {
+        state.freeOnly = !state.freeOnly;
+        freeToggle.setAttribute("aria-pressed", state.freeOnly ? "true" : "false");
+        render();
+        scrollToResults();
+      });
+
+      input.addEventListener("input", function () {
+        state.q = input.value.trim();
+        render();
+      });
+
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          scrollToResults();
+        }
+      });
+
+      function applyScene(text) {
+        state.cat = "all";
+        state.freeOnly = false;
+        freeToggle.setAttribute("aria-pressed", "false");
+        var all = document.querySelectorAll("[data-cat]");
+        for (var i = 0; i < all.length; i++) {
+          all[i].setAttribute("aria-pressed", all[i].getAttribute("data-cat") === "all" ? "true" : "false");
+        }
+        state.q = "";
+        input.value = "";
+        var names = text.split("|").map(function (x) { return x.trim(); });
+        var list = TOOLS.filter(function (t) { return names.indexOf(t.name) !== -1; });
+        grid.innerHTML = list.map(cardHTML).join("");
+        emptyEl.classList.toggle("show", list.length === 0);
+        countEl.textContent = "场景推荐 " + list.length + " 个工具";
+        grid.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      var scenes = document.querySelectorAll(".scene");
+      for (var s = 0; s < scenes.length; s++) {
+        scenes[s].addEventListener("click", function () {
+          applyScene(this.getAttribute("data-scene"));
+        });
+      }
+
+      document.getElementById("reset").addEventListener("click", function () {
+        state = { cat: "all", q: "", freeOnly: false };
+        input.value = "";
+        freeToggle.setAttribute("aria-pressed", "false");
+        var all = document.querySelectorAll("[data-cat]");
+        for (var i = 0; i < all.length; i++) {
+          all[i].setAttribute("aria-pressed", all[i].getAttribute("data-cat") === "all" ? "true" : "false");
+        }
+        render();
+      });
+
+      var jumps = document.querySelectorAll("[data-jump]");
+      for (var j = 0; j < jumps.length; j++) {
+        jumps[j].addEventListener("click", function (e) {
+          e.preventDefault();
+          var cat = this.getAttribute("data-jump");
+          state.cat = cat;
+          var all = document.querySelectorAll("[data-cat]");
+          for (var i = 0; i < all.length; i++) {
+            all[i].setAttribute("aria-pressed", all[i].getAttribute("data-cat") === cat ? "true" : "false");
+          }
+          render();
+          scrollToResults();
+        });
+      }
+
+      document.getElementById("stat-total").textContent = TOOLS.length;
+      render();
+    </script>
+  </body>
+</html>
